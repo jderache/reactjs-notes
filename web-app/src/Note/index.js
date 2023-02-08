@@ -6,24 +6,33 @@ const Note = () => {
   const { id } = useParams();
 
   const [note, setNote] = useState(null);
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
 
   const fetchNote = useCallback(async () => {
     const response = await fetch(`http://localhost:4000/notes/${id}`);
     const note = await response.json();
     setNote(note);
-    console.log(note);
+    setTitle(note.title);
+    setContent(note.content);
   }, [id]);
 
   useEffect(() => {
-    //GET http://localhost:4000/notes
     fetchNote();
   }, [id, fetchNote]);
 
-  console.log({ id });
+  const handleTitleChange = (event) => {
+    setTitle(event.target.value);
+  };
+
+  const handleContentChange = (event) => {
+    setContent(event.target.value);
+  };
+
   return (
     <Form>
-      <Title onChange type="text" value={note ? note.title : ""} />
-      <Content value={note ? note.content : ""}></Content>
+      <Title type="text" value={title} onChange={handleTitleChange} />
+      <Content value={content} onChange={handleContentChange} />
       <button>Save</button>
     </Form>
   );
