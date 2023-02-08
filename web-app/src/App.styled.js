@@ -9,6 +9,6 @@ export const Side = styled.aside`
   background-color: #1d2337;
 `;
 export const Main = styled.main`
- height: 100vh;
- margin-inline-start: 240px;
+  height: 100vh;
+  margin-inline-start: 240px;
 `;

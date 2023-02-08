@@ -1,12 +1,15 @@
 import { Side, Main } from "./App.styled";
 import { GlobalStyle } from "./GlobalStyle";
+import Note from "./Note/index.js";
 
 function App() {
   return (
     <>
-      <GlobalStyle/>
+      <GlobalStyle />
       <Side>Barre latérale</Side>
-      <Main>Contenu principal</Main>
+      <Main>
+        <Note />
+      </Main>
     </>
   );
 }
