@@ -11,17 +11,22 @@ Initialiser `db.json` avec le contenu suivant :
   "notes": [
     {
       "id": 1,
-      "title": "Initiation à React",
-      "content": "Lorem ipsum…"
+      "title": "Inititation à React.JS",
+      "content": "React est un framework de dev interractif"
     },
     {
       "id": 2,
-      "title": "Utilisation de json-server",
-      "content": "Bla bla"
+      "title": "Utilisation de JSON server",
+      "content": "lorem ipsummmm"
+    },
+    {
+      "title": "Postman",
+      "content": "Pour faire des requêtes HTTP",
+      "id": 4
     }
   ],
   "profile": {
-    "name": "Arnaud"
+    "name": "Julien"
   }
 }
 ```
