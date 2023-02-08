@@ -1,4 +1,5 @@
 import { Side, Main } from "./App.styled";
+import { Routes, Route } from "react-router-dom";
 import { darkTheme, GlobalStyle } from "./GlobalStyle";
 import { ThemeProvider } from "styled-components";
 import Note from "./Note/index.js";
@@ -30,14 +31,20 @@ function App() {
             <NoteList>
               {notes.map((note) => (
                 <li key={note.id}>
-                  <LinkToNote key={note.id} title={note.title} />
+                  <LinkToNote key={note.id} id={note.id} title={note.title} />
                 </li>
               ))}
             </NoteList>
           )}
         </Side>
         <Main>
-          <Note />
+          <Routes>
+            <Route
+              path="/"
+              element={<div>Sélectionnez une note pour l'éditer</div>}
+            />
+            <Route path="/notes/:id" element={<Note />} />
+          </Routes>
         </Main>
       </ThemeProvider>
     </>
