@@ -4,7 +4,7 @@ const Note = () => {
   return (
     <Form>
       <Title type="text" />
-      <Content>Content</Content>
+      <Content></Content>
       <button>Save</button>
     </Form>
   );
