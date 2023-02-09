@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { VscLoading } from "react-icons/vsc";
 
 const INPUT_PADDING = 8;
 
@@ -28,4 +29,67 @@ export const Content = styled.textarea`
   border: none;
   outline: none;
   padding: ${INPUT_PADDING}px;
+`;
+
+export const ErrorMessage = styled.div`
+  color: ${({ theme }) => theme.errorColor};
+`;
+
+export const SaveButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 13px;
+`;
+export const SaveButton = styled.button`
+  display: flex;
+  width: 105px;
+  height: 45px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 50px;
+  color: ${({ theme }) => theme.mainTextColor};
+  background-color: ${({ theme }) => theme.asideBackgroundColor};
+`;
+
+export const LoaderWrapper = styled.div`
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const IconAndLabel = styled.div`
+  display: flex;
+  margin-left: 13px;
+  align-items: center;
+`;
+
+export const Loader = styled(VscLoading)`
+  -webkit-animation: icon-spin 2s infinite linear;
+  animation: icon-spin 2s infinite linear;
+
+  @-webkit-keyframes icon-spin {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(359deg);
+      transform: rotate(359deg);
+    }
+  }
+
+  @keyframes icon-spin {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(359deg);
+      transform: rotate(359deg);
+    }
+  }
 `;

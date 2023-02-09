@@ -1,40 +1,130 @@
 import { useState, useEffect, useCallback } from "react";
-import { Form, Title, Content } from "./Note.styled";
+import {
+  Form,
+  Title,
+  Content,
+  SaveButton,
+  IconAndLabel,
+  Loader,
+  SaveButtonContainer,
+  ErrorMessage,
+} from "./Note.styled";
 import { useParams } from "react-router-dom";
+import { FiCheck } from "react-icons/fi";
+import { VscLoading } from "react-icons/vsc";
+import { FullHeightWidthCentered } from "../App.styled";
 
-const Note = () => {
+const Note = ({ onChange }) => {
   const { id } = useParams();
 
   const [note, setNote] = useState(null);
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [getStatus, setGetStatus] = useState("IDLE");
+  const [saveStatus, setSaveStatus] = useState("IDLE");
 
   const fetchNote = useCallback(async () => {
-    const response = await fetch(`http://localhost:4000/notes/${id}`);
+    setGetStatus("LOADING");
+    const response = await fetch(`/notes/${id}`);
     const note = await response.json();
+    if (response.ok) {
+      setNote(note);
+      setGetStatus("IDLE");
+    } else {
+      setGetStatus("ERROR");
+    }
     setNote(note);
-    setTitle(note.title);
-    setContent(note.content);
   }, [id]);
+
+  const saveNote = async () => {
+    setSaveStatus("LOADING");
+    if (note.title === "") {
+      note.title = `Sans titre ` + id;
+    }
+    const response = await fetch(`http://localhost:4000/notes/${note.id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(note),
+    });
+    if (response.ok) {
+      setSaveStatus("SAVED");
+      onChange(note);
+    } else {
+      setSaveStatus("ERROR");
+    }
+  };
 
   useEffect(() => {
     fetchNote();
   }, [id, fetchNote]);
 
-  const handleTitleChange = (event) => {
-    setTitle(event.target.value);
-  };
+  if (getStatus === "LOADING") {
+    return (
+      <FullHeightWidthCentered>
+        <Loader />
+      </FullHeightWidthCentered>
+    );
+  }
 
-  const handleContentChange = (event) => {
-    setContent(event.target.value);
-  };
+  if (getStatus === "ERROR") {
+    return (
+      <FullHeightWidthCentered>
+        <ErrorMessage>404 : la note {id} n'existe pas.</ErrorMessage>
+      </FullHeightWidthCentered>
+    );
+  }
 
   return (
-    <Form>
-      <Title type="text" value={title} onChange={handleTitleChange} />
-      <Content value={content} onChange={handleContentChange} />
-      <button>Save</button>
-    </Form>
+    <>
+      <Form
+        onSubmit={(event) => {
+          event.preventDefault();
+          console.log("Form submit", note);
+          saveNote();
+        }}
+      >
+        <Title
+          type="text"
+          value={note ? note.title : ""}
+          onChange={(event) => {
+            setSaveStatus("IDLE");
+            //console.log({ note });
+            //console.log(event.target.value);
+            setNote({
+              ...note,
+              title: event.target.value,
+            });
+          }}
+        />
+        <Content
+          value={note ? note.content : ""}
+          onChange={(event) => {
+            setSaveStatus("IDLE");
+            //console.log(event.target.value);
+            setNote({
+              ...note,
+              content: event.target.value,
+            });
+          }}
+        />
+        <SaveButtonContainer>
+          <SaveButton>Enregistrer</SaveButton>
+          {saveStatus === "SAVED" ? (
+            <IconAndLabel>
+              <FiCheck />
+              Enregistrement terminé.
+            </IconAndLabel>
+          ) : saveStatus === "LOADING" ? (
+            <IconAndLabel>
+              <Loader>
+                <VscLoading />
+                Enregistrement en cours...
+              </Loader>
+            </IconAndLabel>
+          ) : saveStatus === "ERROR" ? (
+            <ErrorMessage>Erreur lors de la sauvegarde</ErrorMessage>
+          ) : null}
+        </SaveButtonContainer>
+      </Form>
+    </>
   );
 };
 

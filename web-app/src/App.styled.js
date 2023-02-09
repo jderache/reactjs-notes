@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { VscColorMode } from "react-icons/vsc";
 
 export const Side = styled.aside`
   position: fixed;
@@ -11,4 +12,31 @@ export const Side = styled.aside`
 export const Main = styled.main`
   height: 100vh;
   margin-inline-start: 240px;
+`;
+
+export const MessageNoNoteSelected = styled.div`
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const FullHeightWidthCentered = styled.div`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ContainerThemeAside = styled.div`
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  justify-content: flex-end;
+`;
+
+export const IconeTheme = styled(VscColorMode)`
+  cursor: pointer;
 `;
