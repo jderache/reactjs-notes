@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { VscColorMode } from "react-icons/vsc";
+import { VscColorMode, VscNewFile } from "react-icons/vsc";
 
 export const Side = styled.aside`
   position: fixed;
@@ -35,9 +35,13 @@ export const ContainerThemeAside = styled.div`
   display: flex;
   align-items: center;
   padding: 0 10px;
-  justify-content: flex-end;
+  justify-content: space-between;
 `;
 
 export const IconeTheme = styled(VscColorMode)`
+  cursor: pointer;
+`;
+
+export const IconeAddNewNote = styled(VscNewFile)`
   cursor: pointer;
 `;

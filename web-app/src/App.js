@@ -4,6 +4,7 @@ import {
   MessageNoNoteSelected,
   ContainerThemeAside,
   IconeTheme,
+  IconeAddNewNote,
 } from "./App.styled";
 import { Routes, Route } from "react-router-dom";
 import { darkTheme, lightTheme, GlobalStyle } from "./GlobalStyle";
@@ -29,7 +30,9 @@ function App() {
   };
 
   const fetchNotes = async () => {
-    const response = await fetch("http://localhost:4000/notes");
+    const response = await fetch(
+      "http://localhost:4000/notes?_sort=id&_order=desc"
+    );
     const notes = await response.json();
     setIsLoading(false);
     setNotes(notes);
@@ -47,6 +50,17 @@ function App() {
 
     setNotes(updatedNotes);
   };
+
+  const newNote = async () => {
+    const response = await fetch(`http://localhost:4000/notes/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ title: "Sans titre" }),
+    });
+    const note = await response.json();
+    setNotes([note, ...notes]);
+  };
+
   useEffect(() => {
     //GET http://localhost:4000/notes
     fetchNotes();
@@ -58,12 +72,13 @@ function App() {
         <GlobalStyle />
         <Side>
           <ContainerThemeAside>
+            <IconeAddNewNote onClick={newNote} />
             <IconeTheme
               onClick={toggleTheme}
               title={
                 theme === "dark"
-                  ? "Switch to light theme."
-                  : "Switch to dark theme."
+                  ? "Switch to light theme"
+                  : "Switch to dark theme"
               }
             />
           </ContainerThemeAside>

@@ -34,6 +34,7 @@ const Note = ({ onChange }) => {
     setNote(note);
   }, [id]);
 
+  // Fonction "saveNote" permet les modifications apportées à la note et de les transmettre au serveur
   const saveNote = async () => {
     setSaveStatus("LOADING");
     if (note.title === "") {
@@ -116,8 +117,8 @@ const Note = ({ onChange }) => {
             <IconAndLabel>
               <Loader>
                 <VscLoading />
-                Enregistrement en cours...
               </Loader>
+              Enregistrement en cours...
             </IconAndLabel>
           ) : saveStatus === "ERROR" ? (
             <ErrorMessage>Erreur lors de la sauvegarde</ErrorMessage>

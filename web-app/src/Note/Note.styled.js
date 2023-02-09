@@ -68,6 +68,7 @@ export const IconAndLabel = styled.div`
   display: flex;
   margin-left: 13px;
   align-items: center;
+  gap: 5px;
 `;
 
 export const Loader = styled(VscLoading)`
