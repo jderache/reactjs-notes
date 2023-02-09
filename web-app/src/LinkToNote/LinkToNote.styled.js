@@ -8,6 +8,7 @@ export const Link = styled(_Link)`
   text-decoration: none;
   color: inherit;
   background-color: ${({ theme }) => theme.asideBackgroundColor};
+  transition: background-color 0.2s;
   &:hover {
     filter: brightness(2);
   }

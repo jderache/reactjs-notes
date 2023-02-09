@@ -8,6 +8,7 @@ export const Side = styled.aside`
   left: 0;
   bottom: 0;
   background-color: ${({ theme }) => theme.asideBackgroundColor};
+  transition: background-color 0.2s;
 `;
 export const Main = styled.main`
   height: 100vh;

@@ -58,7 +58,14 @@ function App() {
         <GlobalStyle />
         <Side>
           <ContainerThemeAside>
-            <IconeTheme onClick={toggleTheme} />
+            <IconeTheme
+              onClick={toggleTheme}
+              title={
+                theme === "dark"
+                  ? "Switch to light theme."
+                  : "Switch to dark theme."
+              }
+            />
           </ContainerThemeAside>
           {isLoading && (
             <LoaderWrapper>

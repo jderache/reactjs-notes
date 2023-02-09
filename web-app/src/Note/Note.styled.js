@@ -19,6 +19,7 @@ export const Title = styled.input`
   border-bottom: 2px solid #1d2327;
   outline: none;
   padding: ${INPUT_PADDING}px;
+  transition: background 0.2s;
 `;
 
 export const Content = styled.textarea`
@@ -29,6 +30,7 @@ export const Content = styled.textarea`
   border: none;
   outline: none;
   padding: ${INPUT_PADDING}px;
+  transition: background 0.2s;
 `;
 
 export const ErrorMessage = styled.div`
@@ -52,6 +54,7 @@ export const SaveButton = styled.button`
   border-radius: 50px;
   color: ${({ theme }) => theme.mainTextColor};
   background-color: ${({ theme }) => theme.asideBackgroundColor};
+  transition: background-color 0.2s;
 `;
 
 export const LoaderWrapper = styled.div`
