@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { VscLoading } from "react-icons/vsc";
+import { VscLoading, VscTrash } from "react-icons/vsc";
+import { Link } from "react-router-dom";
 
 const INPUT_PADDING = 8;
 
@@ -11,6 +12,7 @@ export const Form = styled.form`
 `;
 export const Title = styled.input`
   height: 40px;
+  width: 100%;
   background: transparent;
   font-size: 20px;
   color: inherit;
@@ -20,6 +22,20 @@ export const Title = styled.input`
   outline: none;
   padding: ${INPUT_PADDING}px;
   transition: background 0.2s;
+  padding-right: 50px;
+`;
+
+export const ContainerHeaderNote = styled.div`
+  display: flex;
+  width: 100%;
+`;
+
+export const IconeDelete = styled(VscTrash)`
+  cursor: pointer;
+  height: 40px;
+  position: fixed;
+  width: 20px;
+  right: 10px;
 `;
 
 export const Content = styled.textarea`
@@ -55,6 +71,26 @@ export const SaveButton = styled.button`
   color: ${({ theme }) => theme.mainTextColor};
   background-color: ${({ theme }) => theme.asideBackgroundColor};
   transition: background-color 0.2s;
+`;
+
+export const ContainerLinkReturn = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const LinkReturn = styled(Link)`
+  background-color: ${({ theme }) => theme.asideBackgroundColor};
+  color: inherit;
+  text-decoration: none;
+  padding: 13px;
+  border-radius: 50px;
+  width: 80px;
+  display: flex;
+  justify-content: center;
+  margin-top: 13px;
+  &:hover {
+    filter: brightness(2);
+  }
 `;
 
 export const LoaderWrapper = styled.div`

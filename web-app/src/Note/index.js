@@ -8,13 +8,17 @@ import {
   Loader,
   SaveButtonContainer,
   ErrorMessage,
+  ContainerHeaderNote,
+  IconeDelete,
+  ContainerLinkReturn,
+  LinkReturn,
 } from "./Note.styled";
 import { useParams } from "react-router-dom";
 import { FiCheck } from "react-icons/fi";
 import { VscLoading } from "react-icons/vsc";
 import { FullHeightWidthCentered } from "../App.styled";
 
-const Note = ({ onChange }) => {
+const Note = ({ onChange, onDelete }) => {
   const { id } = useParams();
 
   const [note, setNote] = useState(null);
@@ -53,7 +57,22 @@ const Note = ({ onChange }) => {
     }
   };
 
+  // Fonction DELETE
+  const deleteNote = async () => {
+    const response = await fetch(`/notes/${note.id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.ok) {
+      setGetStatus("DELETE");
+      onDelete(note.id);
+    }
+  };
+
   useEffect(() => {
+    setSaveStatus("IDLE");
     fetchNote();
   }, [id, fetchNote]);
 
@@ -73,6 +92,19 @@ const Note = ({ onChange }) => {
     );
   }
 
+  if (getStatus === "DELETE") {
+    return (
+      <FullHeightWidthCentered>
+        <ContainerLinkReturn>
+          La note {id} a bien été supprimé.
+          <LinkReturn to="/" exact>
+            Retour
+          </LinkReturn>
+        </ContainerLinkReturn>
+      </FullHeightWidthCentered>
+    );
+  }
+
   return (
     <>
       <Form
@@ -82,19 +114,26 @@ const Note = ({ onChange }) => {
           saveNote();
         }}
       >
-        <Title
-          type="text"
-          value={note ? note.title : ""}
-          onChange={(event) => {
-            setSaveStatus("IDLE");
-            //console.log({ note });
-            //console.log(event.target.value);
-            setNote({
-              ...note,
-              title: event.target.value,
-            });
-          }}
-        />
+        <ContainerHeaderNote>
+          <Title
+            type="text"
+            value={note ? note.title : ""}
+            onChange={(event) => {
+              setSaveStatus("IDLE");
+              //console.log({ note });
+              //console.log(event.target.value);
+              setNote({
+                ...note,
+                title: event.target.value,
+              });
+            }}
+          />
+          <IconeDelete
+            onClick={(event) => {
+              deleteNote();
+            }}
+          />
+        </ContainerHeaderNote>
         <Content
           value={note ? note.content : ""}
           onChange={(event) => {

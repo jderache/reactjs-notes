@@ -61,6 +61,12 @@ function App() {
     setNotes([note, ...notes]);
   };
 
+  const deleteNote = (id) => {
+    console.log(notes.filter((_note) => _note.id !== id));
+    console.log(id);
+    setNotes(notes.filter((_note) => _note.id !== id));
+  };
+
   useEffect(() => {
     //GET http://localhost:4000/notes
     fetchNotes();
@@ -109,7 +115,7 @@ function App() {
             />
             <Route
               path="/notes/:id"
-              element={<Note onChange={updateNotes} />}
+              element={<Note onChange={updateNotes} onDelete={deleteNote} />}
             />
           </Routes>
         </Main>

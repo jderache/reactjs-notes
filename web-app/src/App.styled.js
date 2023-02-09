@@ -3,7 +3,8 @@ import { VscColorMode, VscNewFile } from "react-icons/vsc";
 
 export const Side = styled.aside`
   position: fixed;
-  width: 240px;
+  max-width: 300px;
+  width: 100%;
   top: 0;
   left: 0;
   bottom: 0;
@@ -12,7 +13,7 @@ export const Side = styled.aside`
 `;
 export const Main = styled.main`
   height: 100vh;
-  margin-inline-start: 240px;
+  margin-inline-start: 300px;
 `;
 
 export const MessageNoNoteSelected = styled.div`
