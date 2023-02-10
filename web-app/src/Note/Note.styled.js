@@ -11,7 +11,7 @@ export const Form = styled.form`
   align-items: stretch;
 `;
 export const Title = styled.input`
-  height: 40px;
+  height: 80px;
   width: 100%;
   background: transparent;
   font-size: 20px;
@@ -36,6 +36,7 @@ export const IconeDelete = styled(VscTrash)`
   position: fixed;
   width: 20px;
   right: 10px;
+  display: flex;
 `;
 
 export const Content = styled.textarea`

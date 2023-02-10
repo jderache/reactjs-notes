@@ -5,6 +5,7 @@ import {
   ContainerThemeAside,
   IconeTheme,
   IconeAddNewNote,
+  IconesContainer,
 } from "./App.styled";
 import { Routes, Route } from "react-router-dom";
 import { darkTheme, lightTheme, GlobalStyle } from "./GlobalStyle";
@@ -14,10 +15,12 @@ import { useEffect, useState } from "react";
 import LinkToNote from "./LinkToNote";
 import { NoteList } from "./NoteList/NoteList.styled";
 import { Loader, LoaderWrapper } from "./Note/Note.styled";
+import SideActions from "./SideActions";
 
 function App() {
   const [notes, setNotes] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [profileName, setProfileName] = useState("");
 
   // Toggle le thème en sombre/clair
   const [theme, setTheme] = useState("dark");
@@ -37,6 +40,12 @@ function App() {
     setIsLoading(false);
     setNotes(notes);
     // console.log(notes);
+  };
+
+  const fetchProfile = async () => {
+    const response = await fetch("/profile");
+    const profile = await response.json();
+    setProfileName(profile.name);
   };
 
   const updateNotes = (updatedNote) => {
@@ -70,6 +79,7 @@ function App() {
   useEffect(() => {
     //GET http://localhost:4000/notes
     fetchNotes();
+    fetchProfile();
   }, []);
 
   return (
@@ -78,15 +88,21 @@ function App() {
         <GlobalStyle />
         <Side>
           <ContainerThemeAside>
-            <IconeAddNewNote onClick={newNote} />
-            <IconeTheme
-              onClick={toggleTheme}
-              title={
-                theme === "dark"
-                  ? "Switch to light theme"
-                  : "Switch to dark theme"
-              }
+            <SideActions
+              profileName={profileName}
+              onProfileUpdate={setProfileName}
             />
+            <IconesContainer>
+              <IconeAddNewNote onClick={newNote} />
+              <IconeTheme
+                onClick={toggleTheme}
+                title={
+                  theme === "dark"
+                    ? "Switch to light theme"
+                    : "Switch to dark theme"
+                }
+              />
+            </IconesContainer>
           </ContainerThemeAside>
           {isLoading && (
             <LoaderWrapper>

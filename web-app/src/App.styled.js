@@ -32,13 +32,18 @@ export const FullHeightWidthCentered = styled.div`
 `;
 
 export const ContainerThemeAside = styled.div`
-  height: 40px;
+  height: 80px;
   display: flex;
   align-items: center;
   padding: 0 10px;
   justify-content: space-between;
 `;
 
+export const IconesContainer = styled.div`
+  display: flex;
+  gap: 16px;
+  padding: 6px;
+`;
 export const IconeTheme = styled(VscColorMode)`
   cursor: pointer;
 `;
