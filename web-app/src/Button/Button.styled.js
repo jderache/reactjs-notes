@@ -9,6 +9,8 @@ export const Button = styled.button`
   font-size: inherit;
   color: inherit;
   background-color: transparent;
+  padding: 0;
+  cursor: pointer;
 `;
 
 export const PrimaryButton = styled(Button)`

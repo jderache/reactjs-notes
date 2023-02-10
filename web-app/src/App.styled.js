@@ -47,8 +47,10 @@ export const IconesContainer = styled.div`
 `;
 export const IconeTheme = styled(VscColorMode)`
   cursor: pointer;
+  height: 16px;
 `;
 
 export const IconeAddNewNote = styled(VscNewFile)`
   cursor: pointer;
+  height: 16px;
 `;

@@ -28,6 +28,7 @@ export const Title = styled.input`
 export const ContainerHeaderNote = styled.div`
   display: flex;
   width: 100%;
+  align-items: center;
 `;
 
 export const IconeDelete = styled(VscTrash)`

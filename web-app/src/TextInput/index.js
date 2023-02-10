@@ -6,4 +6,5 @@ export const TextInput = styled.input`
   padding: 10px;
   color: inherit;
   background: ${({ theme }) => theme.mainBackgroundColor};
+  border-radius: 50px;
 `;
