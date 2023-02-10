@@ -76,6 +76,14 @@ const Note = ({ onChange, onDelete }) => {
     fetchNote();
   }, [id, fetchNote]);
 
+  useEffect(() => {
+    const delay = setTimeout(async () => {
+      saveNote();
+    }, 1000);
+
+    return () => clearTimeout(delay);
+  }, [note]);
+
   if (getStatus === "LOADING") {
     return (
       <FullHeightWidthCentered>
