@@ -126,7 +126,7 @@ function App() {
           </ContainerThemeAside>
           <SearchInput
             type="search"
-            placeholder="Rechercher..."
+            placeholder="Rechercher.."
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           {isLoading && (
@@ -136,11 +136,13 @@ function App() {
           )}
           {notes && (
             <NoteList>
-              {notes.map((note) => (
-                <li key={note.id}>
-                  <LinkToNote key={note.id} id={note.id} title={note.title} />
-                </li>
-              ))}
+              {notes
+                .filter((note) => doesNotMatchSearchTerm(note))
+                .map((note) => (
+                  <li key={note.id}>
+                    <LinkToNote key={note.id} id={note.id} title={note.title} />
+                  </li>
+                ))}
             </NoteList>
           )}
         </Side>
