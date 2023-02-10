@@ -7,6 +7,8 @@ import {
   IconeAddNewNote,
   IconesContainer,
   SearchInput,
+  SearchIcone,
+  SearchBar,
 } from "./App.styled";
 import { Routes, Route } from "react-router-dom";
 import { darkTheme, lightTheme, GlobalStyle } from "./GlobalStyle";
@@ -124,11 +126,14 @@ function App() {
               />
             </IconesContainer>
           </ContainerThemeAside>
-          <SearchInput
-            type="search"
-            placeholder="Rechercher.."
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
+          <SearchBar>
+            <SearchIcone />
+            <SearchInput
+              type="search"
+              placeholder="Rechercher.."
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </SearchBar>
           {isLoading && (
             <LoaderWrapper>
               <Loader />

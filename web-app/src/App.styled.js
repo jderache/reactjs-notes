@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { VscColorMode, VscNewFile } from "react-icons/vsc";
+import { VscColorMode, VscNewFile, VscSearch } from "react-icons/vsc";
 
 export const Side = styled.aside`
   position: fixed;
@@ -55,6 +55,17 @@ export const IconeAddNewNote = styled(VscNewFile)`
   height: 16px;
 `;
 
+export const SearchIcone = styled(VscSearch)`
+  position: absolute;
+  color: ${({ theme }) => theme.mainTextColor};
+  top: 13px;
+  left: 25px;
+`;
+export const SearchBar = styled.div`
+  display: flex;
+  position: relative;
+`;
+
 export const SearchInput = styled.input`
   display: flex;
   background-color: ${({ theme }) => theme.mainBackgroundColor};
@@ -62,7 +73,7 @@ export const SearchInput = styled.input`
   border: none;
   max-width: 280px;
   width: 100%;
-  padding: 0 10px;
+  padding: 0 10px 0 40px;
   margin: 0 auto;
   height: 40px;
   color: ${({ theme }) => theme.mainTextColor};
