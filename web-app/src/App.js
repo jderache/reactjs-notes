@@ -6,6 +6,7 @@ import {
   IconeTheme,
   IconeAddNewNote,
   IconesContainer,
+  SearchInput,
 } from "./App.styled";
 import { Routes, Route } from "react-router-dom";
 import { darkTheme, lightTheme, GlobalStyle } from "./GlobalStyle";
@@ -21,6 +22,7 @@ function App() {
   const [notes, setNotes] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [profileName, setProfileName] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   // Toggle le thème en sombre/clair
   const [theme, setTheme] = useState("dark");
@@ -76,6 +78,24 @@ function App() {
     setNotes(notes.filter((_note) => _note.id !== id));
   };
 
+  const doesNotMatchSearchTerm = (note) => {
+    if (note.title) {
+      if (note.title.includes(searchTerm)) {
+        return true;
+      } else if (note.content) {
+        if (note.content.includes(searchTerm)) {
+          return true;
+        }
+      }
+    } else if (note.content) {
+      if (note.content.includes(searchTerm)) {
+        return true;
+      }
+    }
+
+    return false;
+  };
+
   useEffect(() => {
     //GET http://localhost:4000/notes
     fetchNotes();
@@ -104,6 +124,11 @@ function App() {
               />
             </IconesContainer>
           </ContainerThemeAside>
+          <SearchInput
+            type="search"
+            placeholder="Rechercher..."
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
           {isLoading && (
             <LoaderWrapper>
               <Loader />

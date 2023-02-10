@@ -54,3 +54,16 @@ export const IconeAddNewNote = styled(VscNewFile)`
   cursor: pointer;
   height: 16px;
 `;
+
+export const SearchInput = styled.input`
+  display: flex;
+  background-color: ${({ theme }) => theme.mainBackgroundColor};
+  border-radius: 50px;
+  border: none;
+  max-width: 280px;
+  width: 100%;
+  padding: 0 10px;
+  margin: 0 auto;
+  height: 40px;
+  color: ${({ theme }) => theme.mainTextColor};
+`;
